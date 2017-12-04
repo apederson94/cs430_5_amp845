@@ -1,3 +1,72 @@
+
+function multiplyMartices(m1, m2) {
+  var resultMatrix = [
+    (m1[0] * m2[0]) + (m1[1] * m2[1]) + (m1[2] * m2[2]), (m1[3] * m2[0]) + (m1[4] * m2[1]) + (m1[5] * m2[2])
+  ];
+}
+
+function rotateImg(vertex, theta) {
+  var tmpVertex = [
+    vertex[0],
+    vertex[1],
+    0
+  ];
+
+  var rotationMatrix = [
+    Math.cos(theta), -Math.sin(theta), 0,
+    Math.sin(theta, Math.cos(theta)), 0,
+    0, 0, 1
+  ];
+  return multiplyMartices(rotationMatrix, vertex);
+}
+
+function scaleImg(vertex, scalar) {
+  var tmpVertex = [
+    vertex[0],
+    vertex[1],
+    0
+  ];
+
+  var scalarMatrix = [
+    scalar, 0, 0
+    0, scalar, 0,
+    0, 0, 1
+  ];
+  return multiplyMartices(scalarMatrix, vertex);
+}
+
+function shearImg(vertex, shearX, shearY) {
+  var tmpVertex = [
+    vertex[0],
+    vertex[1],
+    0
+  ];
+
+  var shearMatrix = [
+    1, shearX, 0,
+    shearY, 1, 0,
+    0, 0, 1
+  ];
+  return multiplyMartices(shearMatrix, vertex)
+}
+
+function translateImg(vertex, translateX, translateY) {
+  var tmpVertex = [
+    vertex[0],
+    vertex[1],
+    0
+  ];
+
+  var translationMatrix = [
+    1, 0, translateX,
+    0, 1, translateY,
+    0, 0, 1
+  ];
+
+  return multiplyMartices(translationMatrix, vertex);
+
+}
+
 var vertexShaderSource = `#version 300 es
 
 in vec4 a_position;
